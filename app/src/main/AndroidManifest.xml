@@ -19,6 +19,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".cardio.CardioExerciseListActivity"
+            android:label="@string/title_cardioexercise_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.MainActivity" />
+        </activity>
+        <activity
+            android:name=".cardio.CardioExerciseDetailActivity"
+            android:label="@string/title_cardioexercise_detail"
+            android:parentActivityName=".cardio.CardioExerciseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity" />
+        </activity>
     </application>
 
 </manifest>

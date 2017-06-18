@@ -2,7 +2,6 @@ package com.workout.renedix.renedixworkout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity;
+import com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity;
+import com.workout.renedix.renedixworkout.settings.SettingsActivity;
+import com.workout.renedix.renedixworkout.workout.WorkoutListActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,15 +27,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -71,6 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
 
@@ -85,6 +79,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_cardio) {
             startActivity(new Intent(this, CardioExerciseListActivity.class));
+        }else if (id == R.id.nav_resistance){
+            startActivity(new Intent(this, ResistanceExerciseListActivity.class));
+        }else if (id == R.id.nav_workout){
+            startActivity(new Intent(this, WorkoutListActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

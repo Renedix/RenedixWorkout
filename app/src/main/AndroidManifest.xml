@@ -37,6 +37,50 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity" />
         </activity>
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.MainActivity" />
+        </activity>
+        <activity
+            android:name=".resistance.ResistanceExerciseListActivity"
+            android:label="@string/title_resistanceexercise_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.MainActivity" />
+        </activity>
+        <activity
+            android:name=".resistance.ResistanceExerciseDetailActivity"
+            android:label="@string/title_resistanceexercise_detail"
+            android:parentActivityName=".resistance.ResistanceExerciseListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity" />
+        </activity>
+        <activity
+            android:name=".workout.WorkoutListActivity"
+            android:label="@string/title_workout_list"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.MainActivity" />
+        </activity>
+        <activity
+            android:name=".workout.WorkoutDetailActivity"
+            android:label="@string/title_workout_detail"
+            android:parentActivityName=".workout.WorkoutListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.workout.renedix.renedixworkout.workout.WorkoutListActivity" />
+        </activity>
     </application>
 
 </manifest>

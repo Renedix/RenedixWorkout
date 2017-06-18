@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:title="Workout" />
-    </group>
-
-    <item android:title="Exercises">
+    <item android:title="Setup">
         <menu>
             <item
                 android:id="@+id/nav_cardio"
                 android:icon="@drawable/ic_cardio"
-                android:title="Cardio" />
+                android:title="Cardio exercises" />
             <item
                 android:id="@+id/nav_resistance"
                 android:icon="@drawable/ic_resistance"
-                android:title="Resistance" />
+                android:title="Resistance exercises" />
+            <item
+                android:id="@+id/nav_workout"
+                android:icon="@drawable/ic_numbered_list"
+                android:title="Workouts" />
         </menu>
     </item>
 

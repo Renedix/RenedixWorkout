@@ -18,7 +18,8 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.workout.renedix.renedixworkout.R;
-import com.workout.renedix.renedixworkout.resistance.dummy.DummyContent;
+import com.workout.renedix.renedixworkout.data.Database;
+import com.workout.renedix.renedixworkout.data.Pojo.ResistanceExercise;
 
 import java.util.List;
 
@@ -94,15 +95,15 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Database.getInstance().getResistanceExercises()));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<ResistanceExercise> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<ResistanceExercise> items) {
             mValues = items;
         }
 
@@ -116,15 +117,15 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(Integer.toString(mValues.get(position).id));
+            holder.mContentView.setText(mValues.get(position).label);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(ResistanceExerciseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(ResistanceExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
                         ResistanceExerciseDetailFragment fragment = new ResistanceExerciseDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -133,7 +134,7 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, ResistanceExerciseDetailActivity.class);
-                        intent.putExtra(ResistanceExerciseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(ResistanceExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
 
                         context.startActivity(intent);
                     }
@@ -150,7 +151,7 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public ResistanceExercise mItem;
 
             public ViewHolder(View view) {
                 super(view);

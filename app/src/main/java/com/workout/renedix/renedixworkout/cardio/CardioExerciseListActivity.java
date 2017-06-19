@@ -18,7 +18,8 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.workout.renedix.renedixworkout.R;
-import com.workout.renedix.renedixworkout.cardio.dummy.DummyContent;
+import com.workout.renedix.renedixworkout.data.Database;
+import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 
 import java.util.List;
 
@@ -86,15 +87,15 @@ public class CardioExerciseListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Database.getInstance().getCardioExercises()));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<CardioExercise> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<CardioExercise> items) {
             mValues = items;
         }
 
@@ -108,15 +109,15 @@ public class CardioExerciseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(Integer.toString(mValues.get(position).id));
+            holder.mContentView.setText(mValues.get(position).label);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(CardioExerciseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(CardioExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
                         CardioExerciseDetailFragment fragment = new CardioExerciseDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -125,7 +126,7 @@ public class CardioExerciseListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, CardioExerciseDetailActivity.class);
-                        intent.putExtra(CardioExerciseDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(CardioExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
 
                         context.startActivity(intent);
                     }
@@ -142,7 +143,7 @@ public class CardioExerciseListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public CardioExercise mItem;
 
             public ViewHolder(View view) {
                 super(view);

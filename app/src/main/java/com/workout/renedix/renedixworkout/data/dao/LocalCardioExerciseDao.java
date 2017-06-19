@@ -16,7 +16,7 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         exercises = new ArrayList<>();
 
         // Poulate exercises
-        for(int i=0;i<10;i++){
+        for(int i=0;i<5;i++){
             exercises.add(new CardioExercise(i,"Exercise number"+i, "Description "+i));
         }
 
@@ -28,7 +28,7 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         CardioExercise targetExercise = null;
 
         for (CardioExercise exercise:exercises) {
-            if (exercise.getId()==id){
+            if (exercise.id==id){
                 targetExercise = exercise;
             }
         }
@@ -53,9 +53,9 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
 
     @Override
     public void update(CardioExercise element) {
-        CardioExercise stored = this.getById(element.getId());
+        CardioExercise stored = this.getById(element.id);
 
-        stored.setLabel(element.getLabel());
-        stored.setDescription(element.getLabel());
+        stored.label = element.label;
+        stored.description = element.description;
     }
 }

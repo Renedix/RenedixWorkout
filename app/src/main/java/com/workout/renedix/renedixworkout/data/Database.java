@@ -28,4 +28,8 @@ public class Database {
         return cardioExerciseDao.list();
     };
 
+    public CardioExercise getCardioExerciseById(String id){
+        return (CardioExercise) cardioExerciseDao.getById(Integer.parseInt(id));
+    }
+
 }

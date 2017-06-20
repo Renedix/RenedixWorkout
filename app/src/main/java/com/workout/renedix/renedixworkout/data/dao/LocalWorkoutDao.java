@@ -17,8 +17,10 @@ public class LocalWorkoutDao implements Dao<Workout> {
         workouts = new ArrayList<Workout>();
 
         for(int i =0;i<5;i++){
-            workouts.add(new Workout(i,"Workout name "+i,"Workout description "+i));
+            this.add(new Workout("Workout name "+i,"Workout description "+i));
         }
+
+        this.remove(2);
     }
 
     @Override
@@ -33,22 +35,50 @@ public class LocalWorkoutDao implements Dao<Workout> {
 
     @Override
     public void add(Workout element) {
+        element.id = getNextId();
         workouts.add(element);
     }
 
+    private int getNextId(){
+        int id = 0;
+        for (Workout workout: workouts) {
+            if (workout.id>id){
+                id = workout.id;
+            }
+        }
+        return id+1;
+    }
+
     @Override
-    public void remove(Workout element) {
-        workouts.remove(element);
+    public void remove(int id) {
+        workouts.remove(this.getLocalById(id));
     }
 
     @Override
     public List<Workout> list() {
-        return workouts;
+        ArrayList<Workout> clonedList = new ArrayList<Workout>();
+
+        for (Workout exercise: workouts) {
+            clonedList.add(new Workout(exercise));
+        }
+
+        return clonedList;
+    }
+
+    public Workout getLocalById(int id) {
+
+        for (Workout workout: workouts) {
+            if (id==workout.id){
+                return workout;
+            }
+        }
+
+        return null;
     }
 
     @Override
     public void update(Workout element) {
-        Workout workout = this.getById(element.id);
+        Workout workout = this.getLocalById(element.id);
 
         workout.description = element.description;
         workout.name = element.name;

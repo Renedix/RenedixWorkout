@@ -16,9 +16,12 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         exercises = new ArrayList<>();
 
         // Poulate exercises
-        for(int i=0;i<5;i++){
-            exercises.add(new CardioExercise(i,"Exercise number"+i, "Description "+i));
-        }
+        this.add(new CardioExercise("Cylcing",""));
+        this.add(new CardioExercise("Running",""));
+        this.add(new CardioExercise("Treadmill",""));
+        this.add(new CardioExercise("Rowing",""));
+        this.add(new CardioExercise("Step Master",""));
+
 
     }
 
@@ -27,7 +30,7 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
 
         CardioExercise targetExercise = null;
 
-        for (CardioExercise exercise:exercises) {
+        for (CardioExercise exercise:list()) {
             if (exercise.id==id){
                 targetExercise = exercise;
             }
@@ -38,24 +41,54 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
 
     @Override
     public void add(CardioExercise element) {
+        element.id = getNextId();
         exercises.add(element);
     }
 
+    private int getNextId(){
+        int id = 0;
+        for (CardioExercise exercise: exercises) {
+            if (exercise.id>id){
+                id = exercise.id;
+            }
+        }
+        return id+1;
+    }
+
+
     @Override
-    public void remove(CardioExercise element) {
-        exercises.remove(element);
+    public void remove(int id) {
+        exercises.remove(getLocalById(id));
     }
 
     @Override
     public List<CardioExercise> list() {
-        return exercises;
+        ArrayList<CardioExercise> clonedList = new ArrayList<CardioExercise>();
+
+        for (CardioExercise exercise: exercises) {
+            clonedList.add(new CardioExercise(exercise));
+        }
+
+        return clonedList;
     }
 
     @Override
     public void update(CardioExercise element) {
-        CardioExercise stored = this.getById(element.id);
+        CardioExercise stored = this.getLocalById(element.id);
 
         stored.label = element.label;
         stored.description = element.description;
     }
+
+    private CardioExercise getLocalById(int id){
+
+        for (CardioExercise exercise:list()) {
+            if (exercise.id==id){
+                return exercise;
+            }
+        }
+
+        return null;
+    }
+
 }

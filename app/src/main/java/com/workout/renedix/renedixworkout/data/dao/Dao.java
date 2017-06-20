@@ -12,7 +12,7 @@ public interface Dao<E> {
 
     public void add(E element);
 
-    public void remove(E element);
+    public void remove(int id);
 
     public List<E> list();
 

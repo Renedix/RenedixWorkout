@@ -1,4 +1,4 @@
-package com.workout.renedix.renedixworkout.workout;
+package com.workout.renedix.renedixworkout.setup.resistance;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +13,17 @@ import android.view.MenuItem;
 import com.workout.renedix.renedixworkout.R;
 
 /**
- * An activity representing a single Workout detail screen. This
+ * An activity representing a single Resistance Exercise detail screen. This
  * activity is only used narrow width devices. On tablet-size devices,
  * item details are presented side-by-side with a list of items
- * in a {@link WorkoutListActivity}.
+ * in a {@link ResistanceExerciseListActivity}.
  */
-public class WorkoutDetailActivity extends AppCompatActivity {
+public class ResistanceExerciseDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_workout_detail);
+        setContentView(R.layout.activity_resistanceexercise_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
@@ -55,12 +55,12 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(WorkoutDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(WorkoutDetailFragment.ARG_ITEM_ID));
-            WorkoutDetailFragment fragment = new WorkoutDetailFragment();
+            arguments.putString(ResistanceExerciseDetailFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(ResistanceExerciseDetailFragment.ARG_ITEM_ID));
+            ResistanceExerciseDetailFragment fragment = new ResistanceExerciseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.workout_detail_container, fragment)
+                    .add(R.id.resistanceexercise_detail_container, fragment)
                     .commit();
         }
     }
@@ -75,7 +75,7 @@ public class WorkoutDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, WorkoutListActivity.class));
+            navigateUpTo(new Intent(this, ResistanceExerciseListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

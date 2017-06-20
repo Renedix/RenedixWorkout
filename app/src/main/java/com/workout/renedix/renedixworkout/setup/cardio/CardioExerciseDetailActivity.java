@@ -1,4 +1,4 @@
-package com.workout.renedix.renedixworkout.cardio;
+package com.workout.renedix.renedixworkout.setup.cardio;
 
 import android.content.Intent;
 import android.os.Bundle;

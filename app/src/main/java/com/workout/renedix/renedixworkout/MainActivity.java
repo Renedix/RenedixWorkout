@@ -2,8 +2,6 @@ package com.workout.renedix.renedixworkout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,10 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity;
-import com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity;
+import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListActivity;
+import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListActivity;
 import com.workout.renedix.renedixworkout.settings.SettingsActivity;
-import com.workout.renedix.renedixworkout.workout.WorkoutListActivity;
+import com.workout.renedix.renedixworkout.setup.workout.WorkoutListActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

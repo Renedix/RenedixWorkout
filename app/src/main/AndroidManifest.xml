@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".cardio.CardioExerciseListActivity"
+            android:name=".setup.cardio.CardioExerciseListActivity"
             android:label="@string/title_cardioexercise_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -29,13 +29,13 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".cardio.CardioExerciseDetailActivity"
+            android:name=".setup.cardio.CardioExerciseDetailActivity"
             android:label="@string/title_cardioexercise_detail"
-            android:parentActivityName=".cardio.CardioExerciseListActivity"
+            android:parentActivityName=".setup.cardio.CardioExerciseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity" />
+                android:value=".setup.cardio.CardioExerciseListActivity" />
         </activity>
         <activity
             android:name=".settings.SettingsActivity"
@@ -46,7 +46,7 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".resistance.ResistanceExerciseListActivity"
+            android:name=".setup.resistance.ResistanceExerciseListActivity"
             android:label="@string/title_resistanceexercise_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -55,16 +55,16 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".resistance.ResistanceExerciseDetailActivity"
+            android:name=".setup.resistance.ResistanceExerciseDetailActivity"
             android:label="@string/title_resistanceexercise_detail"
-            android:parentActivityName=".resistance.ResistanceExerciseListActivity"
+            android:parentActivityName=".setup.resistance.ResistanceExerciseListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity" />
+                android:value=".setup.resistance.ResistanceExerciseListActivity" />
         </activity>
         <activity
-            android:name=".workout.WorkoutListActivity"
+            android:name=".setup.workout.WorkoutListActivity"
             android:label="@string/title_workout_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -73,13 +73,13 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".workout.WorkoutDetailActivity"
+            android:name=".setup.workout.WorkoutDetailActivity"
             android:label="@string/title_workout_detail"
-            android:parentActivityName=".workout.WorkoutListActivity"
+            android:parentActivityName=".setup.workout.WorkoutListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.workout.WorkoutListActivity" />
+                android:value=".setup.workout.WorkoutListActivity" />
         </activity>
     </application>
 

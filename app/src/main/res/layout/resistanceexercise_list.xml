@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity"
+    tools:context=".setup.resistance.ResistanceExerciseListActivity"
     tools:listitem="@layout/resistanceexercise_list_content" />

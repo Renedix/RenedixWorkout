@@ -1,6 +1,7 @@
-package com.workout.renedix.renedixworkout.cardio;
+package com.workout.renedix.renedixworkout.setup.workout;
 
 import android.app.Activity;
+import android.provider.ContactsContract;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,15 +12,15 @@ import android.widget.TextView;
 
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
-import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
+import com.workout.renedix.renedixworkout.data.Pojo.Workout;
 
 /**
- * A fragment representing a single Cardio Exercise detail screen.
- * This fragment is either contained in a {@link CardioExerciseListActivity}
- * in two-pane mode (on tablets) or a {@link CardioExerciseDetailActivity}
+ * A fragment representing a single Workout detail screen.
+ * This fragment is either contained in a {@link WorkoutListActivity}
+ * in two-pane mode (on tablets) or a {@link WorkoutDetailActivity}
  * on handsets.
  */
-public class CardioExerciseDetailFragment extends Fragment {
+public class WorkoutDetailFragment extends Fragment {
     /**
      * The fragment argument representing the item ID that this fragment
      * represents.
@@ -29,13 +30,13 @@ public class CardioExerciseDetailFragment extends Fragment {
     /**
      * The dummy content this fragment is presenting.
      */
-    private CardioExercise mItem;
+    private Workout mItem;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CardioExerciseDetailFragment() {
+    public WorkoutDetailFragment() {
     }
 
     @Override
@@ -46,13 +47,12 @@ public class CardioExerciseDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            String id = getArguments().getString(ARG_ITEM_ID);
-            mItem = Database.getInstance().getCardioExerciseById(id);
+            mItem = Database.getInstance().getWorkoutById(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.label);
+                appBarLayout.setTitle(mItem.name);
             }
         }
     }
@@ -60,11 +60,11 @@ public class CardioExerciseDetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.cardioexercise_detail, container, false);
+        View rootView = inflater.inflate(R.layout.workout_detail, container, false);
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.cardioexercise_detail)).setText(mItem.description);
+            ((TextView) rootView.findViewById(R.id.workout_detail)).setText(mItem.description);
         }
 
         return rootView;

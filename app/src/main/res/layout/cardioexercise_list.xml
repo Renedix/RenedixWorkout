@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.workout.renedix.renedixworkout.cardio.CardioExerciseListActivity"
+    tools:context=".setup.cardio.CardioExerciseListActivity"
     tools:listitem="@layout/cardioexercise_list_content" />

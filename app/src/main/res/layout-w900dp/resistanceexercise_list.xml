@@ -9,7 +9,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity">
+    tools:context=".setup.resistance.ResistanceExerciseListActivity">
 
     <!--
     This layout is a two-pane layout for the Resistance Exercises
@@ -26,7 +26,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context="com.workout.renedix.renedixworkout.resistance.ResistanceExerciseListActivity"
+        tools:context=".setup.resistance.ResistanceExerciseListActivity"
         tools:listitem="@layout/resistanceexercise_list_content" />
 
     <FrameLayout

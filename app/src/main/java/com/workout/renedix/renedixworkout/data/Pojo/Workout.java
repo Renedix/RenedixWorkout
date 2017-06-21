@@ -10,7 +10,6 @@ public class Workout {
     public String description;
 
     public Workout(String name, String description){
-        this.id = id;
         this.name = name;
         this.description = description;
     }

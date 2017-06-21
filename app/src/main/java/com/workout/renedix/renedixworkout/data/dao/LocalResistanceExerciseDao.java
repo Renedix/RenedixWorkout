@@ -20,8 +20,6 @@ public class LocalResistanceExerciseDao implements Dao<ResistanceExercise> {
         this.add(new ResistanceExercise("Pectoral Flys","Chest"));
         this.add(new ResistanceExercise("Hammer Curls","Bicep"));
 
-        this.remove(2);
-
     }
 
     @Override

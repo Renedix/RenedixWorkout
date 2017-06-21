@@ -22,7 +22,6 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         this.add(new CardioExercise("Rowing",""));
         this.add(new CardioExercise("Step Master",""));
 
-
     }
 
     @Override
@@ -82,7 +81,7 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
 
     private CardioExercise getLocalById(int id){
 
-        for (CardioExercise exercise:list()) {
+        for (CardioExercise exercise:exercises) {
             if (exercise.id==id){
                 return exercise;
             }

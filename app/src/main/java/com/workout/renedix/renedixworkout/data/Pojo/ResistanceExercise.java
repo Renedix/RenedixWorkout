@@ -10,7 +10,6 @@ public class ResistanceExercise {
     public String description;
 
     public ResistanceExercise(String label, String description){
-        this.id = id;
         this.label = label;
         this.description = description;
     }

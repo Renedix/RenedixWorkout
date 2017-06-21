@@ -11,13 +11,12 @@ public class CardioExercise {
 
     public CardioExercise(String label, String description) {
         this.label = label;
-        this.id = id;
         this.description= description;
     }
 
     public CardioExercise(CardioExercise cardioExercise){
         this.id = cardioExercise.id;
         this.label = new String(cardioExercise.label);
-        this.description = new String(cardioExercise.label);
+        this.description = new String(cardioExercise.description);
     }
 }

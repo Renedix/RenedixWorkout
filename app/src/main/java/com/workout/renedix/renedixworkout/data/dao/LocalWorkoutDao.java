@@ -19,8 +19,6 @@ public class LocalWorkoutDao implements Dao<Workout> {
         for(int i =0;i<5;i++){
             this.add(new Workout("Workout name "+i,"Workout description "+i));
         }
-
-        this.remove(2);
     }
 
     @Override

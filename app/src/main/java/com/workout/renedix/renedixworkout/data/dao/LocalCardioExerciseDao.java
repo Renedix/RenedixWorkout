@@ -16,11 +16,11 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         exercises = new ArrayList<>();
 
         // Poulate exercises
-        this.add(new CardioExercise("Cylcing",""));
-        this.add(new CardioExercise("Running",""));
-        this.add(new CardioExercise("Treadmill",""));
-        this.add(new CardioExercise("Rowing",""));
-        this.add(new CardioExercise("Step Master",""));
+        this.add(new CardioExercise("Cylcing","1d2"));
+        this.add(new CardioExercise("Running","s23"));
+        this.add(new CardioExercise("Treadmill","a 2"));
+        this.add(new CardioExercise("Rowing","112"));
+        this.add(new CardioExercise("Step Master","qwdq qwdqw"));
 
     }
 

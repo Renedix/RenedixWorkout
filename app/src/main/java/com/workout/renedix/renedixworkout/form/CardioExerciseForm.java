@@ -1,13 +1,18 @@
-package com.workout.renedix.renedixworkout;
+package com.workout.renedix.renedixworkout.form;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 import com.workout.renedix.renedixworkout.databinding.ActivityCardioExerciseFormBinding;
+
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
 public class CardioExerciseForm extends AppCompatActivity {
 
@@ -19,6 +24,11 @@ public class CardioExerciseForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardio_exercise_form);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         Bundle b = getIntent().getExtras();
 

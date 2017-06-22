@@ -20,6 +20,8 @@ public class CardioExerciseForm extends AppCompatActivity {
     private String cardioExerciseId;
     private CardioExercise exercise;
 
+    private boolean insertMode;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,14 @@ public class CardioExerciseForm extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
 
         cardioExerciseId = b.getString(CARDIO_EXERCISE_ID);
-        exercise = Database.getInstance().getCardioExerciseById(cardioExerciseId);
+
+        if (cardioExerciseId!=null){
+            insertMode = false;
+            exercise = Database.getInstance().getCardioExerciseById(cardioExerciseId);
+        }else{
+            insertMode = true;
+            exercise = new CardioExercise("","");
+        }
 
         ActivityCardioExerciseFormBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
         binding.setExercise(exercise);

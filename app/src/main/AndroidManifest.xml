@@ -81,6 +81,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".setup.workout.WorkoutListActivity" />
         </activity>
+        <activity
+            android:name=".CardioExerciseForm"
+            android:parentActivityName=".setup.cardio.CardioExerciseDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".setup.cardio.CardioExerciseDetailActivity"/>
+        </activity>
     </application>
 
 </manifest>

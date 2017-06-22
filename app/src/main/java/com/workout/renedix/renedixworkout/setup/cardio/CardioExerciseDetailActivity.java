@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.workout.renedix.renedixworkout.CardioExerciseForm;
 import com.workout.renedix.renedixworkout.R;
 
 /**
@@ -31,8 +32,12 @@ public class CardioExerciseDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String id = getIntent().getStringExtra(CardioExerciseDetailFragment.ARG_ITEM_ID);
+
+                Intent intent = new Intent(view.getContext(), CardioExerciseForm.class);
+
+                intent.putExtra(CardioExerciseForm.CARDIO_EXERCISE_ID, id);
+                view.getContext().startActivity(intent);
             }
         });
 

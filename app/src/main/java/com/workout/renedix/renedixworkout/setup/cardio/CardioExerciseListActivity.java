@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.workout.renedix.renedixworkout.CardioExerciseForm;
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;

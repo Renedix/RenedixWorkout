@@ -37,6 +37,9 @@ public class Database {
     public CardioExercise getCardioExerciseById(String id){
         return (CardioExercise) cardioExerciseDao.getById(Integer.parseInt(id));
     }
+    public void updateCardioExercise(CardioExercise exercise){
+        cardioExerciseDao.update(exercise);
+    }
     //endregion
 
     //region ResistanceExercise

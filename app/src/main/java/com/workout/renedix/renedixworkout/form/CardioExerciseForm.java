@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
@@ -19,7 +21,8 @@ public class CardioExerciseForm extends AppCompatActivity {
 
     public static final String CARDIO_EXERCISE_ID = "CARDIO_EXERCISE_ID";
     private String cardioExerciseId;
-    private CardioExercise exercise;
+
+    ActivityCardioExerciseFormBinding binding;
 
     private boolean insertMode;
 
@@ -36,6 +39,7 @@ public class CardioExerciseForm extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
 
         cardioExerciseId = b.getString(CARDIO_EXERCISE_ID);
+        CardioExercise exercise = null;
 
         if (cardioExerciseId!=null){
             insertMode = false;
@@ -45,8 +49,16 @@ public class CardioExerciseForm extends AppCompatActivity {
             exercise = new CardioExercise("","");
         }
 
-        ActivityCardioExerciseFormBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
         binding.setExercise(exercise);
+
+        Button button = (Button) findViewById(R.id.update_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Database.getInstance().updateCardioExercise(binding.getExercise());
+                navigateToParent();
+            }
+        });
 
     }
 
@@ -56,9 +68,13 @@ public class CardioExerciseForm extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
+                navigateToParent();
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void navigateToParent(){
+        NavUtils.navigateUpFromSameTask(this);
     }
 }

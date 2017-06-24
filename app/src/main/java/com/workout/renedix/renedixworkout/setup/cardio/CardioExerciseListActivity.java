@@ -66,6 +66,8 @@ public class CardioExerciseListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+        //TODO: Add Cardio Exercise
     }
 
     @Override

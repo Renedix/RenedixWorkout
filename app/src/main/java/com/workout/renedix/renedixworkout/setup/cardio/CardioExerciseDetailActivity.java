@@ -41,7 +41,6 @@ public class CardioExerciseDetailActivity extends AppCompatActivity {
         });
 
         //TODO: Add delete button to this page
-        //TODO: Hide ID
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();

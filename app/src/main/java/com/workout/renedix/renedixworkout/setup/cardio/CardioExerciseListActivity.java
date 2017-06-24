@@ -110,7 +110,6 @@ public class CardioExerciseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(Integer.toString(mValues.get(position).id));
             holder.mContentView.setText(mValues.get(position).label);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {

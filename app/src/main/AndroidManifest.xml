@@ -84,8 +84,7 @@
         <activity
             android:name=".form.CardioExerciseForm"
             android:label="Cardio Form"
-            android:parentActivityName=".setup.cardio.CardioExerciseDetailActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".setup.cardio.CardioExerciseDetailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".setup.cardio.CardioExerciseDetailActivity"/>

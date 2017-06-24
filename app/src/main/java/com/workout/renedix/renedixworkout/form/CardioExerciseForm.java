@@ -52,14 +52,21 @@ public class CardioExerciseForm extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
         binding.setExercise(exercise);
 
-        Button button = (Button) findViewById(R.id.update_button);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button updateButton = (Button) findViewById(R.id.update_button);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Database.getInstance().updateCardioExercise(binding.getExercise());
                 navigateToParent();
             }
         });
 
+        Button deleteButton = (Button) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Database.getInstance().deleteCardioExercise(binding.getExercise());
+                navigateToParent();
+            }
+        });
     }
 
 

@@ -67,6 +67,10 @@ public class CardioExerciseForm extends AppCompatActivity {
                 navigateToParent();
             }
         });
+
+        //TODO: Disable button if update has not been made
+        //TODO: Disable Delete button if not in Update mode
+        //TODO: Change Update button to Add button when in Add mode
     }
 
 

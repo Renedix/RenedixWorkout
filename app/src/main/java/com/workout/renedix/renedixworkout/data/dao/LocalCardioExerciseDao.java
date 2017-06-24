@@ -3,6 +3,8 @@ package com.workout.renedix.renedixworkout.data.dao;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -10,6 +12,14 @@ import java.util.List;
  */
 
 public class LocalCardioExerciseDao implements Dao<CardioExercise> {
+
+    class CardioExerciseComparator implements Comparator<CardioExercise> {
+        @Override
+        public int compare(CardioExercise o1, CardioExercise o2) {
+            return o1.label.compareTo(o2.label);
+        }
+
+    }
 
     private List<CardioExercise> exercises;
     public LocalCardioExerciseDao(){
@@ -67,6 +77,8 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
         for (CardioExercise exercise: exercises) {
             clonedList.add(new CardioExercise(exercise));
         }
+
+        Collections.sort(clonedList,new CardioExerciseComparator());
 
         return clonedList;
     }

@@ -36,15 +36,17 @@ public class CardioExerciseForm extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        // Bindings
         Bundle b = getIntent().getExtras();
-
         cardioExerciseId = b.getString(CARDIO_EXERCISE_ID);
         CardioExercise exercise = null;
 
-        if (cardioExerciseId!=null){
+        if (!cardioExerciseId.equals("")){
+            Button updateButton = (Button) findViewById(R.id.apply_button);
             insertMode = false;
             exercise = Database.getInstance().getCardioExerciseById(cardioExerciseId);
         }else{
+            Button updateButton = (Button) findViewById(R.id.apply_button);
             insertMode = true;
             exercise = new CardioExercise("","");
         }
@@ -52,10 +54,16 @@ public class CardioExerciseForm extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
         binding.setExercise(exercise);
 
-        Button updateButton = (Button) findViewById(R.id.update_button);
+        //region: button events
+        Button updateButton = (Button) findViewById(R.id.apply_button);
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Database.getInstance().updateCardioExercise(binding.getExercise());
+                if (insertMode){
+                    Database.getInstance().insertCardioExercise(binding.getExercise());
+                }else{
+                    Database.getInstance().updateCardioExercise(binding.getExercise());
+                }
+
                 navigateToParent();
             }
         });
@@ -67,6 +75,8 @@ public class CardioExerciseForm extends AppCompatActivity {
                 navigateToParent();
             }
         });
+
+        //endregion
 
         //TODO: Disable button if update has not been made
         //TODO: Disable Delete button if not in Update mode

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
+import com.workout.renedix.renedixworkout.form.CardioExerciseForm;
 
 import java.util.List;
 
@@ -67,7 +69,17 @@ public class CardioExerciseListActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
-        //TODO: Add Cardio Exercise
+        FloatingActionButton addButton = (FloatingActionButton) findViewById(R.id.add_button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), CardioExerciseForm.class);
+
+                intent.putExtra(CardioExerciseForm.CARDIO_EXERCISE_ID, "");
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override

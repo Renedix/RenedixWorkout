@@ -43,6 +43,9 @@ public class Database {
     public void deleteCardioExercise(CardioExercise exercise){
         cardioExerciseDao.remove(exercise.id);
     }
+    public void insertCardioExercise(CardioExercise exercise){
+        cardioExerciseDao.add(exercise);
+    }
     //endregion
 
     //region ResistanceExercise

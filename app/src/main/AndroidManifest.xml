@@ -83,7 +83,7 @@
         </activity>
         <activity
             android:name=".form.CardioExerciseForm"
-            android:label="Cardio Form"
+            android:label="Cardio Exercise"
             android:parentActivityName=".setup.cardio.CardioExerciseListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

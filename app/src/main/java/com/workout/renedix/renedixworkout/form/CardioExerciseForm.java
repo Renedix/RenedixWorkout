@@ -36,17 +36,15 @@ public class CardioExerciseForm extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        // Bindings
+        //region Bindings
         Bundle b = getIntent().getExtras();
         cardioExerciseId = b.getString(CARDIO_EXERCISE_ID);
         CardioExercise exercise = null;
 
         if (!cardioExerciseId.equals("")){
-            Button updateButton = (Button) findViewById(R.id.apply_button);
             insertMode = false;
             exercise = Database.getInstance().getCardioExerciseById(cardioExerciseId);
         }else{
-            Button updateButton = (Button) findViewById(R.id.apply_button);
             insertMode = true;
             exercise = new CardioExercise("","");
         }
@@ -54,7 +52,9 @@ public class CardioExerciseForm extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
         binding.setExercise(exercise);
 
-        //region: button events
+        //endregion
+
+        //region button events
         Button updateButton = (Button) findViewById(R.id.apply_button);
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -78,6 +78,14 @@ public class CardioExerciseForm extends AppCompatActivity {
 
         //endregion
 
+        if (insertMode){
+            deleteButton.setVisibility(View.GONE);
+            updateButton.setText("Add");
+        }else{
+            deleteButton.setVisibility(View.VISIBLE);
+            updateButton.setText("Update");
+        }
+
         //TODO: Disable button if update has not been made
         //TODO: Disable Delete button if not in Update mode
         //TODO: Change Update button to Add button when in Add mode
@@ -98,4 +106,5 @@ public class CardioExerciseForm extends AppCompatActivity {
     private void navigateToParent(){
         NavUtils.navigateUpFromSameTask(this);
     }
+
 }

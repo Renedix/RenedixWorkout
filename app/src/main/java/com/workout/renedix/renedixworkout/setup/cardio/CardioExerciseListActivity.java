@@ -3,7 +3,6 @@ package com.workout.renedix.renedixworkout.setup.cardio;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +19,6 @@ import android.view.MenuItem;
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
-import com.workout.renedix.renedixworkout.form.CardioExerciseForm;
 
 import java.util.List;
 

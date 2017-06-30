@@ -82,12 +82,19 @@
                 android:value=".setup.workout.WorkoutListActivity" />
         </activity>
         <activity
-            android:name=".form.CardioExerciseForm"
+            android:name=".setup.cardio.CardioExerciseForm"
             android:label="Cardio Exercise"
             android:parentActivityName=".setup.cardio.CardioExerciseListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.cardio.CardioExerciseListActivity"/>
+                android:value=".setup.cardio.CardioExerciseListActivity" />
+        </activity>
+        <activity android:name=".setup.resistance.ResistanceExerciseForm"
+            android:label="Resistance Exercise"
+            android:parentActivityName=".setup.resistance.ResistanceExerciseListActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".setup.resistance.ResistanceExerciseListActivity"/>
         </activity>
     </application>
 

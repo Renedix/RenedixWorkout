@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import com.workout.renedix.renedixworkout.form.CardioExerciseForm;
 import com.workout.renedix.renedixworkout.R;
 
 /**
@@ -39,8 +38,6 @@ public class CardioExerciseDetailActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);
             }
         });
-
-        //TODO: Add delete button to this page
 
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();

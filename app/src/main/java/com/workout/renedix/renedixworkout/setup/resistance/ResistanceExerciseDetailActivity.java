@@ -31,8 +31,13 @@ public class ResistanceExerciseDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                String id = getIntent().getStringExtra(ResistanceExerciseDetailFragment.ARG_ITEM_ID);
+
+                Intent intent = new Intent(view.getContext(), ResistanceExerciseForm.class);
+
+                intent.putExtra(ResistanceExerciseForm.RESISTANT_EXERCISE_ID, id);
+
+                view.getContext().startActivity(intent);
             }
         });
 

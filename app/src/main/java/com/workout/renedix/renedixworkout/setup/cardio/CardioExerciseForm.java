@@ -1,4 +1,4 @@
-package com.workout.renedix.renedixworkout.form;
+package com.workout.renedix.renedixworkout.setup.cardio;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -54,7 +54,7 @@ public class CardioExerciseForm extends AppCompatActivity {
 
         //endregion
 
-        //region button events
+        //region Events
         Button updateButton = (Button) findViewById(R.id.apply_button);
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -87,8 +87,6 @@ public class CardioExerciseForm extends AppCompatActivity {
         }
 
         //TODO: Disable button if update has not been made
-        //TODO: Disable Delete button if not in Update mode
-        //TODO: Change Update button to Add button when in Add mode
     }
 
 

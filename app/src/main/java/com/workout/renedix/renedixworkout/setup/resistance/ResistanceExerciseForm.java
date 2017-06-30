@@ -1,9 +1,13 @@
 package com.workout.renedix.renedixworkout.setup.resistance;
 
 import android.databinding.DataBindingUtil;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
@@ -12,8 +16,11 @@ import com.workout.renedix.renedixworkout.databinding.ActivityResistanceExercise
 
 public class ResistanceExerciseForm extends AppCompatActivity {
 
+    ActivityResistanceExerciseFormBinding binding;
+
     public static final String RESISTANT_EXERCISE_ID="RESISTANT_EXERCISE_ID";
     String resistanceExerciseId;
+    boolean insertMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +34,66 @@ public class ResistanceExerciseForm extends AppCompatActivity {
         //region Bindings
         Bundle b = getIntent().getExtras();
         resistanceExerciseId = b.getString(RESISTANT_EXERCISE_ID);
+        ResistanceExercise exercise;
 
-        ActivityResistanceExerciseFormBinding binding;
-
-        ResistanceExercise exercise = Database.getInstance().getResistanceExerciseById(resistanceExerciseId);
+        if (!resistanceExerciseId.equals("")){
+            insertMode = false;
+            exercise = Database.getInstance().getResistanceExerciseById(resistanceExerciseId);
+        }else{
+            insertMode = true;
+            exercise = new ResistanceExercise("","");
+        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_resistance_exercise_form);
         binding.setResistanceExercise(exercise);
 
         //endregion
 
-        //TODO Add Resistance Exercise to Form
-        //TODO Update Button, delete button ExerciseForm
-        //TODO Changing Apply button with update\add
-        //TODO Hide delete button when in insert mode
+        //region Events
+        Button updateButton = (Button) findViewById(R.id.apply_button);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (insertMode){
+                    Database.getInstance().insertResistanceExercise(binding.getResistanceExercise());
+                }else{
+                    Database.getInstance().updateResistanceExercise(binding.getResistanceExercise());
+                }
+
+                navigateToParent();
+            }
+        });
+
+        Button deleteButton = (Button) findViewById(R.id.delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Database.getInstance().deleteCardioExercise(binding.getResistanceExercise());
+                navigateToParent();
+            }
+        });
+
+        //endregion
+
+        if (insertMode){
+            deleteButton.setVisibility(View.GONE);
+            updateButton.setText("Add");
+        }else{
+            deleteButton.setVisibility(View.VISIBLE);
+            updateButton.setText("Update");
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                navigateToParent();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void navigateToParent(){
+        NavUtils.navigateUpFromSameTask(this);
     }
 }

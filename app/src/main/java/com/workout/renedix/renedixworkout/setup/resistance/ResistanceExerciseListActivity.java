@@ -50,12 +50,16 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(view.getContext(), ResistanceExerciseForm.class);
+
+                intent.putExtra(ResistanceExerciseForm.RESISTANT_EXERCISE_ID, "");
+
+                view.getContext().startActivity(intent);
             }
         });
         // Show the Up button in the action bar.
@@ -117,7 +121,6 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(Integer.toString(mValues.get(position).id));
             holder.mContentView.setText(mValues.get(position).label);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {

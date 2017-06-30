@@ -56,6 +56,15 @@ public class Database {
     public ResistanceExercise getResistanceExerciseById(String id){
         return (ResistanceExercise) resistanceExerciseDao.getById(Integer.parseInt(id));
     }
+    public void insertResistanceExercise(ResistanceExercise exercise){
+        resistanceExerciseDao.add(exercise);
+    }
+    public void updateResistanceExercise(ResistanceExercise exercise){
+        resistanceExerciseDao.update(exercise);
+    }
+    public void deleteCardioExercise(ResistanceExercise exercise){
+        resistanceExerciseDao.remove(exercise.id);
+    }
     //endregion
 
     //region Workout

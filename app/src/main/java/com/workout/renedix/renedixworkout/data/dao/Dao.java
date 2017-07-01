@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface Dao<E> {
 
+    // TODO Change Id parameter to from String to Integer
+
     public E getById(int id);
 
     public void add(E element);

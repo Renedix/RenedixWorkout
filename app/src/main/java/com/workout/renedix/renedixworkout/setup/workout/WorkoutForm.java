@@ -42,7 +42,6 @@ public class WorkoutForm extends AppCompatActivity {
         }else{
             insertMode = true;
             workout = new Workout();
-            // TODO Implement default constructors for PoJos
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_workout_form);

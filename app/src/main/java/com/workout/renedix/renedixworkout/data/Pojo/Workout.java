@@ -14,6 +14,11 @@ public class Workout {
         this.description = description;
     }
 
+    public Workout(){
+        this.name="";
+        this.description = "";
+    }
+
     public Workout(Workout workout){
         this.id = workout.id;
         this.name = new String(workout.name);

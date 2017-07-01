@@ -41,12 +41,11 @@ public class ResistanceExerciseForm extends AppCompatActivity {
             exercise = Database.getInstance().getResistanceExerciseById(resistanceExerciseId);
         }else{
             insertMode = true;
-            exercise = new ResistanceExercise("","");
+            exercise = new ResistanceExercise();
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_resistance_exercise_form);
         binding.setResistanceExercise(exercise);
-
         //endregion
 
         //region Events
@@ -70,7 +69,6 @@ public class ResistanceExerciseForm extends AppCompatActivity {
                 navigateToParent();
             }
         });
-
         //endregion
 
         if (insertMode){

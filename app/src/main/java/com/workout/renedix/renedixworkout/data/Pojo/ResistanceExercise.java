@@ -14,6 +14,11 @@ public class ResistanceExercise {
         this.description = description;
     }
 
+    public ResistanceExercise(){
+        this.label = "";
+        this.description = "";
+    }
+
     public ResistanceExercise(ResistanceExercise exercise){
         this.id = exercise.id;
         this.label = new String(exercise.label);

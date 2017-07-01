@@ -46,7 +46,7 @@ public class CardioExerciseForm extends AppCompatActivity {
             exercise = Database.getInstance().getCardioExerciseById(cardioExerciseId);
         }else{
             insertMode = true;
-            exercise = new CardioExercise("","");
+            exercise = new CardioExercise();
         }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_cardio_exercise_form);
@@ -78,6 +78,7 @@ public class CardioExerciseForm extends AppCompatActivity {
 
         //endregion
 
+        //region Button Description Update
         if (insertMode){
             deleteButton.setVisibility(View.GONE);
             updateButton.setText("Add");
@@ -85,8 +86,8 @@ public class CardioExerciseForm extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             updateButton.setText("Update");
         }
+        //endregion
 
-        //TODO: Disable button if update has not been made
     }
 
 

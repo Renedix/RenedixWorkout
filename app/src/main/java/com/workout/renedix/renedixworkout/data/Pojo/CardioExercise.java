@@ -14,6 +14,11 @@ public class CardioExercise {
         this.description= description;
     }
 
+    public CardioExercise(){
+        this.label = "";
+        this.description = "";
+    }
+
     public CardioExercise(CardioExercise cardioExercise){
         this.id = cardioExercise.id;
         this.label = new String(cardioExercise.label);

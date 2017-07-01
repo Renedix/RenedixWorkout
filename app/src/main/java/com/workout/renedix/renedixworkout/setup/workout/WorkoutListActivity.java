@@ -55,8 +55,11 @@ public class WorkoutListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(), WorkoutForm.class);
+
+                intent.putExtra(WorkoutForm.WORKOUT_ID, "");
+
+                view.getContext().startActivity(intent);
             }
         });
         // Show the Up button in the action bar.
@@ -118,7 +121,6 @@ public class WorkoutListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(Integer.toString(mValues.get(position).id));
             holder.mContentView.setText(mValues.get(position).name);
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -150,14 +152,12 @@ public class WorkoutListActivity extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
-            public final TextView mIdView;
             public final TextView mContentView;
             public Workout mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
 

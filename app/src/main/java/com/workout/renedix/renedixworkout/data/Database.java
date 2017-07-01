@@ -76,6 +76,15 @@ public class Database {
     public Workout getWorkoutById(String id){
         return (Workout) workoutDao.getById(Integer.parseInt(id));
     }
+    public void insertWorkout(Workout workout){
+        workoutDao.add(workout);
+    }
+    public void updateWorkout(Workout workout){
+        workoutDao.update(workout);
+    }
+    public void deleteWorkout(Workout workout){
+        workoutDao.remove(workout.id);
+    }
     //endregion
 
 }

@@ -27,7 +27,10 @@ public class LocalWorkoutDao implements Dao<Workout> {
         workouts = new ArrayList<Workout>();
 
         for(int i =0;i<5;i++){
-            this.add(new Workout("Workout name "+i,"Workout description "+i));
+            Workout workout = new Workout("Workout name "+i,"Workout description "+i);
+            workout.insertTestExercises();
+
+            this.add(workout);
         }
     }
 

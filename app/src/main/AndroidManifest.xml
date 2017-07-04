@@ -29,15 +29,6 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".setup.cardio.CardioExerciseDetailActivity"
-            android:label="@string/title_cardioexercise_detail"
-            android:parentActivityName=".setup.cardio.CardioExerciseListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.cardio.CardioExerciseListActivity" />
-        </activity>
-        <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
@@ -55,15 +46,6 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".setup.resistance.ResistanceExerciseDetailActivity"
-            android:label="@string/title_resistanceexercise_detail"
-            android:parentActivityName=".setup.resistance.ResistanceExerciseListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.resistance.ResistanceExerciseListActivity" />
-        </activity>
-        <activity
             android:name=".setup.workout.WorkoutListActivity"
             android:label="@string/title_workout_list"
             android:parentActivityName=".MainActivity"
@@ -71,15 +53,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
-        </activity>
-        <activity
-            android:name=".setup.workout.WorkoutDetailActivity"
-            android:label="@string/title_workout_detail"
-            android:parentActivityName=".setup.workout.WorkoutListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.workout.WorkoutListActivity" />
         </activity>
         <activity
             android:name=".setup.cardio.CardioExerciseForm"
@@ -97,12 +70,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".setup.resistance.ResistanceExerciseListActivity" />
         </activity>
-        <activity   android:name=".setup.workout.WorkoutForm"
-                    android:label="Workout"
-                    android:parentActivityName=".setup.workout.WorkoutListActivity">
+        <activity
+            android:name=".setup.workout.WorkoutForm"
+            android:label="Workout"
+            android:parentActivityName=".setup.workout.WorkoutListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".setup.workout.WorkoutListActivity" />
+        </activity>
+        <activity android:name=".AddExerciseActivity">
         </activity>
     </application>
 

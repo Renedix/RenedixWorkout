@@ -1,5 +1,6 @@
 package com.workout.renedix.renedixworkout.setup.workout;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.workout.renedix.renedixworkout.AddExerciseActivity;
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.Workout;
@@ -74,14 +76,20 @@ public class WorkoutForm extends AppCompatActivity {
         Button cardioButton = (Button) findViewById(R.id.cardioButton);
         cardioButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                navigateToParent();
+                Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
+
+                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
+
+                v.getContext().startActivity(intent);
             }
         });
 
         Button resistanceButton = (Button) findViewById(R.id.resistanceButton);
         resistanceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                navigateToParent();
+                Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
+                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
+                v.getContext().startActivity(intent);
             }
         });
 

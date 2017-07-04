@@ -89,5 +89,6 @@
     <string name="insert_button_text">Insert</string>
     <string name="cancel_button_text">Cancel</string>
     <string name="delete_button_text">Delete</string>
+    <string name="activity_add_exercise_label">Add Exercises</string>
 
 </resources>

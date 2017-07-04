@@ -71,6 +71,20 @@ public class WorkoutForm extends AppCompatActivity {
             }
         });
 
+        Button cardioButton = (Button) findViewById(R.id.cardioButton);
+        cardioButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                navigateToParent();
+            }
+        });
+
+        Button resistanceButton = (Button) findViewById(R.id.resistanceButton);
+        resistanceButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                navigateToParent();
+            }
+        });
+
         //endregion
 
         //region Button Description Update

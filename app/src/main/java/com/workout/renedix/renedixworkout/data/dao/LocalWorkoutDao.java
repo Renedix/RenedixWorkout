@@ -36,7 +36,7 @@ public class LocalWorkoutDao implements Dao<Workout> {
 
     @Override
     public Workout getById(int id) {
-        for (Workout workout:workouts) {
+        for (Workout workout:list()) {
             if (workout.id == id){
                 return workout;
             }

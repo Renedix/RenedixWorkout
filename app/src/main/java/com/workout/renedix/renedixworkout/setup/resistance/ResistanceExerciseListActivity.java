@@ -25,14 +25,6 @@ import java.util.List;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
-/**
- * An activity representing a list of Resistance Exercises. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link ResistanceExerciseDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 public class ResistanceExerciseListActivity extends AppCompatActivity {
 
     /**
@@ -126,21 +118,11 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(ResistanceExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
-                        ResistanceExerciseDetailFragment fragment = new ResistanceExerciseDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.resistanceexercise_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, ResistanceExerciseDetailActivity.class);
-                        intent.putExtra(ResistanceExerciseDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
+                Context context = v.getContext();
+                Intent intent = new Intent(context, ResistanceExerciseForm.class);
+                intent.putExtra(ResistanceExerciseForm.RESISTANT_EXERCISE_ID, Integer.toString(holder.mItem.id));
 
-                        context.startActivity(intent);
-                    }
+                context.startActivity(intent);
                 }
             });
         }

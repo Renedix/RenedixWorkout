@@ -26,14 +26,6 @@ import java.util.List;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
-/**
- * An activity representing a list of Workouts. This activity
- * has different presentations for handset and tablet-size devices. On
- * handsets, the activity presents a list of items, which when touched,
- * lead to a {@link WorkoutDetailActivity} representing
- * item details. On tablets, the activity presents the list of items and
- * item details side-by-side using two vertical panes.
- */
 public class WorkoutListActivity extends AppCompatActivity {
 
     /**
@@ -126,21 +118,11 @@ public class WorkoutListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(WorkoutDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
-                        WorkoutDetailFragment fragment = new WorkoutDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.workout_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, WorkoutDetailActivity.class);
-                        intent.putExtra(WorkoutDetailFragment.ARG_ITEM_ID, Integer.toString(holder.mItem.id));
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, WorkoutForm.class);
+                    intent.putExtra(WorkoutForm.WORKOUT_ID, Integer.toString(holder.mItem.id));
 
-                        context.startActivity(intent);
-                    }
+                    context.startActivity(intent);
                 }
             });
         }

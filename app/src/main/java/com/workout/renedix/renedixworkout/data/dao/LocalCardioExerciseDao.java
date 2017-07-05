@@ -49,9 +49,10 @@ public class LocalCardioExerciseDao implements Dao<CardioExercise> {
     }
 
     @Override
-    public void add(CardioExercise element) {
+    public int add(CardioExercise element) {
         element.id = getNextId();
         exercises.add(element);
+        return element.id;
     }
 
     private int getNextId(){

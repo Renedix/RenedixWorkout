@@ -43,9 +43,10 @@ public class LocalWorkoutDao implements Dao<Workout> {
     }
 
     @Override
-    public void add(Workout element) {
+    public int add(Workout element) {
         element.id = getNextId();
         workouts.add(element);
+        return element.id;
     }
 
     private int getNextId(){

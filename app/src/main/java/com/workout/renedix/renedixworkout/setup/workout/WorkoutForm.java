@@ -77,8 +77,26 @@ public class WorkoutForm extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
 
-                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
-                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
+                if (insertMode){
+                    workoutId = Integer.toString(Database.getInstance().insertWorkout(binding.getWorkout()));
+
+                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
+                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, workoutId);
+
+                    // Switch to update mode
+                    binding.setWorkout(Database.getInstance().getWorkoutById(workoutId));
+
+                    Button deleteButton = (Button) findViewById(R.id.delete_button);
+                    deleteButton.setVisibility(View.VISIBLE);
+
+                    Button updateButton = (Button) findViewById(R.id.apply_button);
+                    updateButton.setText("Update");
+
+                    insertMode = false;
+                }else{
+                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
+                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
+                }
 
                 v.getContext().startActivity(intent);
             }
@@ -88,8 +106,31 @@ public class WorkoutForm extends AppCompatActivity {
         resistanceButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
-                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
-                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
+
+                if (insertMode) {
+
+                    workoutId = Integer.toString(Database.getInstance().insertWorkout(binding.getWorkout()));
+
+                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
+                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
+                    
+                    // Switch to update mode
+                    binding.setWorkout(Database.getInstance().getWorkoutById(workoutId));
+
+                    Button deleteButton = (Button) findViewById(R.id.delete_button);
+                    deleteButton.setVisibility(View.VISIBLE);
+
+                    Button updateButton = (Button) findViewById(R.id.apply_button);
+                    updateButton.setText("Update");
+
+                    insertMode = false;
+
+                }else{
+                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
+                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
+                }
+
+
                 v.getContext().startActivity(intent);
             }
         });

@@ -43,8 +43,8 @@ public class Database {
     public void deleteCardioExercise(CardioExercise exercise){
         cardioExerciseDao.remove(exercise.id);
     }
-    public void insertCardioExercise(CardioExercise exercise){
-        cardioExerciseDao.add(exercise);
+    public int insertCardioExercise(CardioExercise exercise){
+        return cardioExerciseDao.add(exercise);
     }
     //endregion
 
@@ -56,8 +56,8 @@ public class Database {
     public ResistanceExercise getResistanceExerciseById(String id){
         return (ResistanceExercise) resistanceExerciseDao.getById(Integer.parseInt(id));
     }
-    public void insertResistanceExercise(ResistanceExercise exercise){
-        resistanceExerciseDao.add(exercise);
+    public int insertResistanceExercise(ResistanceExercise exercise){
+        return resistanceExerciseDao.add(exercise);
     }
     public void updateResistanceExercise(ResistanceExercise exercise){
         resistanceExerciseDao.update(exercise);
@@ -76,8 +76,8 @@ public class Database {
     public Workout getWorkoutById(String id){
         return (Workout) workoutDao.getById(Integer.parseInt(id));
     }
-    public void insertWorkout(Workout workout){
-        workoutDao.add(workout);
+    public int insertWorkout(Workout workout){
+        return workoutDao.add(workout);
     }
     public void updateWorkout(Workout workout){
         workoutDao.update(workout);

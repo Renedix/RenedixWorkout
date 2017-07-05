@@ -46,9 +46,10 @@ public class LocalResistanceExerciseDao implements Dao<ResistanceExercise> {
     }
 
     @Override
-    public void add(ResistanceExercise element) {
+    public int add(ResistanceExercise element) {
         element.id = getNextId();
         exercises.add(element);
+        return element.id;
     }
 
     private int getNextId(){

@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 import com.workout.renedix.renedixworkout.data.Pojo.ResistanceExercise;
+import com.workout.renedix.renedixworkout.data.Pojo.Workout;
 
 public class AddExerciseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -25,9 +26,34 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
     private ExerciseTypes passedType;
     public static String EXERCISE_TYPE = "EXERCISE_TYPE";
 
+    private String workoutId;
+    public static String WORKOUT_ID = "WORKOUT_ID";
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         //TODO Onclick item on list
+        ExerciseWrapper exercise = (ExerciseWrapper) parent.getItemAtPosition(position);
+
+        Workout workout = Database.getInstance().getWorkoutById(workoutId);
+
+        switch(passedType){
+            case CARDIO:
+
+                CardioExercise cardioExercise = Database.getInstance().getCardioExerciseById(Integer.toString(exercise.getId()));
+                workout.addCardioExercise(cardioExercise);
+
+                break;
+            case RESISTANCE:
+
+                ResistanceExercise resistanceExercise = Database.getInstance().getResistanceExerciseById(Integer.toString(exercise.getId()));
+                workout.addResistanceExercise(resistanceExercise);
+
+                break;
+        }
+
+        Database.getInstance().updateWorkout(workout);
+
+        refreshList();
     }
 
 
@@ -47,25 +73,25 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
 
         passedType = (ExerciseTypes) getIntent().getSerializableExtra(EXERCISE_TYPE);
 
+        workoutId = getIntent().getStringExtra(WORKOUT_ID);
 
         // TODO Add back button
-        // TODO Filter items based on passed Exercise Id - they cannot add the same item twice.
+        // TODO Do not remove items, gray them out.
     }
 
 
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
+    private void refreshList(){
         arrayAdapter.clear();
+
+        Workout workout = Database.getInstance().getWorkoutById(workoutId);
 
         switch(passedType){
             case CARDIO:
 
                 for(CardioExercise exercise: Database.getInstance().getCardioExercises()){
-                    arrayAdapter.add(new ExerciseWrapper(exercise));
+                    if (!workout.containsCardioExercise(exercise)){
+                        arrayAdapter.add(new ExerciseWrapper(exercise));
+                    }
                 }
 
 
@@ -73,25 +99,40 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
             case RESISTANCE:
 
                 for(ResistanceExercise exercise: Database.getInstance().getResistanceExercises()){
-                    arrayAdapter.add(new ExerciseWrapper(exercise));
+                    if (!workout.containsResistanceExercise(exercise)) {
+                        arrayAdapter.add(new ExerciseWrapper(exercise));
+                    }
                 }
 
                 break;
         }
 
         arrayAdapter.notifyDataSetChanged();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        refreshList();
 
     }
 
     private class ExerciseWrapper {
         private String name;
+        private int id;
         public ExerciseWrapper(CardioExercise exercise){
             this.name = exercise.label;
+            this.id = exercise.id;
         }
 
         public ExerciseWrapper(ResistanceExercise exercise){
             this.name = exercise.label;
+            this.id = exercise.id;
         }
+
+        public int getId(){return id;}
 
         @Override
         public String toString(){

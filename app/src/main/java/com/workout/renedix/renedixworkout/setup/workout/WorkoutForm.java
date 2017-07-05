@@ -79,6 +79,7 @@ public class WorkoutForm extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
 
                 intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
+                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
 
                 v.getContext().startActivity(intent);
             }
@@ -89,6 +90,7 @@ public class WorkoutForm extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
                 intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
+                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
                 v.getContext().startActivity(intent);
             }
         });

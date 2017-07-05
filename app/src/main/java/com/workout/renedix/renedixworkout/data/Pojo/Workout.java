@@ -17,40 +17,6 @@ public class Workout {
     public List<CardioExercise> cardioExercises;
     public List<ResistanceExercise> resistanceExercises;
 
-    //region testData
-
-    public void insertTestExercises(){
-        populateTestCardio();
-        //populateTestResistance();
-    }
-
-    private void populateTestCardio(){
-
-        this.cardioExercises = new ArrayList<CardioExercise>();
-
-        Random random = new Random();
-
-        for(int i=0;i<5;i++){
-            int randomIndex = random.nextInt(20);
-            this.cardioExercises.add(new CardioExercise("Cardio Exercise "+randomIndex,"Cardio Exercise Description "+randomIndex));
-        }
-
-    }
-
-    private void populateTestResistance(){
-
-        this.resistanceExercises = new ArrayList<ResistanceExercise>();
-
-        Random random = new Random();
-
-        for(int i=0;i<5;i++){
-            int randomIndex = random.nextInt(20);
-            this.resistanceExercises.add(new ResistanceExercise("Resistance Exercise "+randomIndex,"Resistance Exercise Description "+randomIndex));
-        }
-
-    }
-
-    //endregion
 
     public Workout(String name, String description){
         this.name = name;
@@ -81,6 +47,26 @@ public class Workout {
 
     public void addResistanceExercise(ResistanceExercise exercise){
         resistanceExercises.add(exercise);
+    }
+
+    public boolean containsCardioExercise(CardioExercise exercise){
+
+        for(CardioExercise cardioExercise: cardioExercises){
+            if (cardioExercise.id == exercise.id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsResistanceExercise(ResistanceExercise exercise){
+
+        for(ResistanceExercise resistanceExercise: resistanceExercises){
+            if (resistanceExercise.id == exercise.id){
+                return true;
+            }
+        }
+        return false;
     }
 
     // TODO Add dummy exercises to all workouts

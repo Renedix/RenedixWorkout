@@ -28,8 +28,6 @@ public class LocalWorkoutDao implements Dao<Workout> {
 
         for(int i =0;i<5;i++){
             Workout workout = new Workout("Workout name "+i,"Workout description "+i);
-            workout.insertTestExercises();
-
             this.add(workout);
         }
     }
@@ -95,5 +93,7 @@ public class LocalWorkoutDao implements Dao<Workout> {
 
         workout.description = element.description;
         workout.name = element.name;
+        workout.resistanceExercises = element.resistanceExercises;
+        workout.cardioExercises = element.cardioExercises;
     }
 }

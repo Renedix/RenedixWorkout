@@ -15,6 +15,9 @@ import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 import com.workout.renedix.renedixworkout.data.Pojo.ResistanceExercise;
 import com.workout.renedix.renedixworkout.data.Pojo.Workout;
 
+import java.util.Collections;
+import java.util.Comparator;
+
 public class AddExerciseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
@@ -117,6 +120,8 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
                 break;
         }
 
+        arrayAdapter.sort(new ExerciseWrapperComparator());
+
         arrayAdapter.notifyDataSetChanged();
     }
 
@@ -161,4 +166,13 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
             return name;
         }
     }
+
+    private class ExerciseWrapperComparator implements Comparator<ExerciseWrapper>{
+
+        @Override
+        public int compare(ExerciseWrapper o1, ExerciseWrapper o2){
+            return o1.name.compareTo(o2.name);
+        }
+    }
+
 }

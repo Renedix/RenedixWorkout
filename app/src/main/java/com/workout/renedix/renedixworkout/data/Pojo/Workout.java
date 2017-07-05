@@ -45,6 +45,25 @@ public class Workout {
         cardioExercises.add(exercise);
     }
 
+    public void removeCardioExercise(CardioExercise exercise){
+        for(int i=0;i<cardioExercises.size();i++){
+            if (exercise.id==cardioExercises.get(i).id){
+                cardioExercises.remove(i);
+                return;
+            }
+        }
+
+    }
+
+    public void removeResistanceExercise(ResistanceExercise exercise){
+        for(int i=0;i<resistanceExercises.size();i++){
+            if (exercise.id==resistanceExercises.get(i).id){
+                resistanceExercises.remove(i);
+                return;
+            }
+        }
+    }
+
     public void addResistanceExercise(ResistanceExercise exercise){
         resistanceExercises.add(exercise);
     }

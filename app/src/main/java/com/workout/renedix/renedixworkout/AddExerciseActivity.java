@@ -31,7 +31,6 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //TODO Onclick item on list
         ExerciseWrapper exercise = (ExerciseWrapper) parent.getItemAtPosition(position);
 
         Workout workout = Database.getInstance().getWorkoutById(workoutId);
@@ -40,13 +39,27 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
             case CARDIO:
 
                 CardioExercise cardioExercise = Database.getInstance().getCardioExerciseById(Integer.toString(exercise.getId()));
-                workout.addCardioExercise(cardioExercise);
+
+                if (exercise.inUse) {
+                    // If in use, remove it from the workout
+                    workout.removeCardioExercise(cardioExercise);
+                }else{
+                    // If not in use, add to workout
+                    workout.addCardioExercise(cardioExercise);
+                }
 
                 break;
             case RESISTANCE:
 
                 ResistanceExercise resistanceExercise = Database.getInstance().getResistanceExerciseById(Integer.toString(exercise.getId()));
-                workout.addResistanceExercise(resistanceExercise);
+
+                if (exercise.inUse) {
+                    // If in use, remove it from the workout
+                    workout.removeResistanceExercise(resistanceExercise);
+                }else{
+                    // If not in use, add to workout
+                    workout.addResistanceExercise(resistanceExercise);
+                }
 
                 break;
         }
@@ -70,7 +83,6 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
 
         this.exerciseList.setOnItemClickListener(this);
 
-
         passedType = (ExerciseTypes) getIntent().getSerializableExtra(EXERCISE_TYPE);
 
         workoutId = getIntent().getStringExtra(WORKOUT_ID);
@@ -89,9 +101,8 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
             case CARDIO:
 
                 for(CardioExercise exercise: Database.getInstance().getCardioExercises()){
-                    if (!workout.containsCardioExercise(exercise)){
-                        arrayAdapter.add(new ExerciseWrapper(exercise));
-                    }
+                    boolean exerciseInUse = workout.containsCardioExercise(exercise);
+                    arrayAdapter.add(new ExerciseWrapper(exercise,exerciseInUse));
                 }
 
 
@@ -99,9 +110,8 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
             case RESISTANCE:
 
                 for(ResistanceExercise exercise: Database.getInstance().getResistanceExercises()){
-                    if (!workout.containsResistanceExercise(exercise)) {
-                        arrayAdapter.add(new ExerciseWrapper(exercise));
-                    }
+                    boolean exerciseInUse = workout.containsResistanceExercise(exercise);
+                    arrayAdapter.add(new ExerciseWrapper(exercise,exerciseInUse));
                 }
 
                 break;
@@ -120,16 +130,28 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
     }
 
     private class ExerciseWrapper {
+        private boolean inUse;
         private String name;
         private int id;
-        public ExerciseWrapper(CardioExercise exercise){
+
+        public ExerciseWrapper(CardioExercise exercise, boolean inUse){
             this.name = exercise.label;
             this.id = exercise.id;
+            this.inUse = inUse;
+
+            if (this.inUse){
+                this.name = "(Assigned) "+this.name;
+            }
         }
 
-        public ExerciseWrapper(ResistanceExercise exercise){
+        public ExerciseWrapper(ResistanceExercise exercise, boolean inUse){
             this.name = exercise.label;
             this.id = exercise.id;
+            this.inUse = inUse;
+
+            if (this.inUse){
+                this.name = "(Assigned) "+this.name;
+            }
         }
 
         public int getId(){return id;}

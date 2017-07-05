@@ -1,4 +1,4 @@
-package com.workout.renedix.renedixworkout;
+package com.workout.renedix.renedixworkout.setup.workout;
 
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 import com.workout.renedix.renedixworkout.data.Pojo.ResistanceExercise;
@@ -92,6 +93,7 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
 
         // TODO Add back button
         // TODO Do not remove items, gray them out.
+        // TODO Allow adding of exercises while not in update mode
     }
 
 

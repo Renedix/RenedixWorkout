@@ -78,7 +78,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".setup.workout.WorkoutListActivity" />
         </activity>
-        <activity android:name=".AddExerciseActivity">
+        <activity android:name=".setup.workout.AddExerciseActivity">
         </activity>
     </application>
 

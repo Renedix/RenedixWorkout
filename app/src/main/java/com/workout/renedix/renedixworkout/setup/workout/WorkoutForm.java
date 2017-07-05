@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.workout.renedix.renedixworkout.AddExerciseActivity;
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.Workout;
@@ -105,7 +104,34 @@ public class WorkoutForm extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             updateButton.setText("Update");
         }
+
         //endregion
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!insertMode){
+            Workout workout = Database.getInstance().getWorkoutById(workoutId);
+
+            Button cardioButton = (Button) findViewById(R.id.cardioButton);
+            Button resistanceButton = (Button) findViewById(R.id.resistanceButton);
+
+            if (workout.cardioExercises.size()>0){
+                cardioButton.setText("Cardio ("+workout.cardioExercises.size()+")");
+            }else{
+                cardioButton.setText("Cardio");
+            }
+
+            if (workout.resistanceExercises.size()>0){
+                resistanceButton.setText("Resistance ("+workout.resistanceExercises.size()+")");
+            }else{
+                resistanceButton.setText("Resistance");
+            }
+        }
+
     }
 
     @Override

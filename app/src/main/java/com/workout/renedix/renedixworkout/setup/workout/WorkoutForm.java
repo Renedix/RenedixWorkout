@@ -20,7 +20,6 @@ public class WorkoutForm extends AppCompatActivity {
     public static final String WORKOUT_ID = "WORKOUT_ID";
     private String workoutId;
     private ActivityWorkoutFormBinding binding;
-    private boolean insertMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +37,8 @@ public class WorkoutForm extends AppCompatActivity {
         Workout workout = null;
 
         if (!workoutId.equals("")){
-            insertMode = false;
             workout = Database.getInstance().getWorkoutById(workoutId);
         }else{
-            insertMode = true;
             workout = new Workout();
         }
 
@@ -54,7 +51,7 @@ public class WorkoutForm extends AppCompatActivity {
         Button updateButton = (Button) findViewById(R.id.apply_button);
         updateButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (insertMode){
+                if (isInsertMode()){
                     Database.getInstance().insertWorkout(binding.getWorkout());
                 }else{
                     Database.getInstance().updateWorkout(binding.getWorkout());
@@ -77,26 +74,14 @@ public class WorkoutForm extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
 
-                if (insertMode){
+                if (isInsertMode()){
+                    // Insert workout before switching
                     workoutId = Integer.toString(Database.getInstance().insertWorkout(binding.getWorkout()));
-
-                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
-                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, workoutId);
-
-                    // Switch to update mode
                     binding.setWorkout(Database.getInstance().getWorkoutById(workoutId));
-
-                    Button deleteButton = (Button) findViewById(R.id.delete_button);
-                    deleteButton.setVisibility(View.VISIBLE);
-
-                    Button updateButton = (Button) findViewById(R.id.apply_button);
-                    updateButton.setText("Update");
-
-                    insertMode = false;
-                }else{
-                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
-                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
                 }
+
+                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.CARDIO);
+                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
 
                 v.getContext().startActivity(intent);
             }
@@ -107,44 +92,18 @@ public class WorkoutForm extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), AddExerciseActivity.class);
 
-                if (insertMode) {
-
+                if (isInsertMode()) {
+                    // Insert workout before switching
                     workoutId = Integer.toString(Database.getInstance().insertWorkout(binding.getWorkout()));
-
-                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
-                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
-                    
-                    // Switch to update mode
                     binding.setWorkout(Database.getInstance().getWorkoutById(workoutId));
-
-                    Button deleteButton = (Button) findViewById(R.id.delete_button);
-                    deleteButton.setVisibility(View.VISIBLE);
-
-                    Button updateButton = (Button) findViewById(R.id.apply_button);
-                    updateButton.setText("Update");
-
-                    insertMode = false;
-
-                }else{
-                    intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
-                    intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
                 }
 
+                intent.putExtra(AddExerciseActivity.EXERCISE_TYPE, AddExerciseActivity.ExerciseTypes.RESISTANCE);
+                intent.putExtra(AddExerciseActivity.WORKOUT_ID, Integer.toString(binding.getWorkout().id));
 
                 v.getContext().startActivity(intent);
             }
         });
-
-        //endregion
-
-        //region Button Description Update
-        if (insertMode){
-            deleteButton.setVisibility(View.GONE);
-            updateButton.setText("Add");
-        }else{
-            deleteButton.setVisibility(View.VISIBLE);
-            updateButton.setText("Update");
-        }
 
         //endregion
     }
@@ -154,7 +113,7 @@ public class WorkoutForm extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (!insertMode){
+        if (!isInsertMode()){
             Workout workout = Database.getInstance().getWorkoutById(workoutId);
 
             Button cardioButton = (Button) findViewById(R.id.cardioButton);
@@ -173,6 +132,16 @@ public class WorkoutForm extends AppCompatActivity {
             }
         }
 
+        Button deleteButton = (Button) findViewById(R.id.delete_button);
+        Button updateButton = (Button) findViewById(R.id.apply_button);
+        if (isInsertMode()){
+            deleteButton.setVisibility(View.GONE);
+            updateButton.setText("Add");
+        }else{
+            deleteButton.setVisibility(View.VISIBLE);
+            updateButton.setText("Update");
+        }
+
     }
 
     @Override
@@ -184,6 +153,10 @@ public class WorkoutForm extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean isInsertMode(){
+        return binding.getWorkout().id==0;
     }
 
     private void navigateToParent(){

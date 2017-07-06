@@ -104,8 +104,8 @@ public class WorkoutForm extends AppCompatActivity {
                 v.getContext().startActivity(intent);
             }
         });
-
         //endregion
+
     }
 
 
@@ -113,8 +113,9 @@ public class WorkoutForm extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        //region Change Cardio\Resistance description
         if (!isInsertMode()){
-            //region Change Cardio\Resistance description
+
             Workout workout = binding.getWorkout();
 
             Button cardioButton = (Button) findViewById(R.id.cardioButton);
@@ -132,9 +133,11 @@ public class WorkoutForm extends AppCompatActivity {
             }else{
                 resistanceButton.setText("Resistance");
             }
-            //endregion
-        }
 
+        }
+        //endregion
+
+        //region Adjust visibility of delete button and Add description
         Button deleteButton = (Button) findViewById(R.id.delete_button);
         Button updateButton = (Button) findViewById(R.id.apply_button);
         if (isInsertMode()){
@@ -144,6 +147,7 @@ public class WorkoutForm extends AppCompatActivity {
             deleteButton.setVisibility(View.VISIBLE);
             updateButton.setText("Update");
         }
+        //endregion
 
     }
 

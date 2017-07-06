@@ -88,12 +88,6 @@ public class Workout {
         return false;
     }
 
-    // TODO Add dummy exercises to all workouts
     // TODO view all exercises for workout on Workout form and Workout Detail (fragment?)
-    // TODO Allow users to add and remove cardio exercises
-    // TODO Allow users to add and remove resistance exercises
-
-
-
 
 }

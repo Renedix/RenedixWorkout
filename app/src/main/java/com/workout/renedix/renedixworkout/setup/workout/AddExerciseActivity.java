@@ -91,9 +91,7 @@ public class AddExerciseActivity extends AppCompatActivity implements AdapterVie
 
         workoutId = getIntent().getStringExtra(WORKOUT_ID);
 
-        // TODO Add back button
         // TODO Do not remove items, gray them out.
-        // TODO Allow adding of exercises while not in update mode
     }
 
 

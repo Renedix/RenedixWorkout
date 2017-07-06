@@ -114,10 +114,12 @@ public class WorkoutForm extends AppCompatActivity {
         super.onResume();
 
         if (!isInsertMode()){
-            Workout workout = Database.getInstance().getWorkoutById(workoutId);
+            //region Change Cardio\Resistance description
+            Workout workout = binding.getWorkout();
 
             Button cardioButton = (Button) findViewById(R.id.cardioButton);
             Button resistanceButton = (Button) findViewById(R.id.resistanceButton);
+
 
             if (workout.cardioExercises.size()>0){
                 cardioButton.setText("Cardio ("+workout.cardioExercises.size()+")");
@@ -130,6 +132,7 @@ public class WorkoutForm extends AppCompatActivity {
             }else{
                 resistanceButton.setText("Resistance");
             }
+            //endregion
         }
 
         Button deleteButton = (Button) findViewById(R.id.delete_button);

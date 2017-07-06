@@ -87,4 +87,11 @@ public class Database {
     }
     //endregion
 
+    //region WorkoutSession
+    //TODO Add WorkoutSession DAO
+    //TODO Add dummy data for WorkoutSession
+    //TODO Display Workout History
+    //TODO Allow users to create workout
+    //endregion
+
 }

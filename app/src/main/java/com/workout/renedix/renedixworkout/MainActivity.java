@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ViewFlipper;
 
 import com.workout.renedix.renedixworkout.session.CardioExerciseSessionFragment;
+import com.workout.renedix.renedixworkout.session.ResistanceExerciseSessionFragment;
 import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListFragment;
 import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListFragment;
 import com.workout.renedix.renedixworkout.settings.SettingsActivity;
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity
             displayView(id);
         } else if(id == R.id.nav_cardio_exercise){
             displayView(id);
+        } else if(id == R.id.nav_resistance_exercise){
+            displayView(id);
         }
 
         return true;
@@ -108,7 +111,11 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_cardio_exercise:
                 fragment = new CardioExerciseSessionFragment();
                 title = "Cardio Exercise Session Form";
-            break;
+                break;
+            case R.id.nav_resistance_exercise:
+                fragment = new ResistanceExerciseSessionFragment();
+                title = "Resistance Exercise Session Form";
+                break;
             case R.id.nav_cardio:
                 fragment = new CardioExerciseListFragment();
                 title = "Cardio Exercise";

@@ -6,6 +6,9 @@
             <item
                 android:id="@+id/nav_cardio_exercise"
                 android:title="Cardio Exercise Test" />
+            <item
+                android:id="@+id/nav_resistance_exercise"
+                android:title="Resistance Exercise Test" />
         </menu>
     </item>
 

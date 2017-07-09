@@ -14,10 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ViewFlipper;
 
+import com.workout.renedix.renedixworkout.session.CardioExerciseSessionFragment;
 import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListFragment;
 import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListFragment;
 import com.workout.renedix.renedixworkout.settings.SettingsActivity;
-import com.workout.renedix.renedixworkout.setup.workout.WorkoutListActivity;
+import com.workout.renedix.renedixworkout.setup.workout.WorkoutListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,13 +91,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_resistance){
             displayView(id);
         } else if (id == R.id.nav_workout){
-            startActivity(new Intent(this, WorkoutListActivity.class));
+            displayView(id);
         } else if(id == R.id.nav_cardio_exercise){
             displayView(id);
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
 
         return true;
     }
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity
         String title = "";
         switch(viewId){
             case R.id.nav_cardio_exercise:
-                fragment = new CardioExerciseSessionForm();
+                fragment = new CardioExerciseSessionFragment();
                 title = "Cardio Exercise Session Form";
             break;
             case R.id.nav_cardio:
@@ -118,6 +116,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_resistance:
                 fragment = new ResistanceExerciseListFragment();
                 title = "Resistance Exercise";
+            break;
+            case R.id.nav_workout:
+                fragment = new WorkoutListFragment();
+                title = "Workouts";
             break;
         }
 
@@ -130,6 +132,9 @@ public class MainActivity extends AppCompatActivity
         if (getSupportActionBar()!=null){
             getSupportActionBar().setTitle(title);
         }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
 
     }
 }

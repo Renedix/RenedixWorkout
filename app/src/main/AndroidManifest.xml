@@ -46,7 +46,7 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".setup.workout.WorkoutListActivity"
+            android:name=".setup.workout.WorkoutListFragment"
             android:label="@string/title_workout_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -73,10 +73,10 @@
         <activity
             android:name=".setup.workout.WorkoutForm"
             android:label="Workout"
-            android:parentActivityName=".setup.workout.WorkoutListActivity">
+            android:parentActivityName=".setup.workout.WorkoutListFragment">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.workout.WorkoutListActivity" />
+                android:value=".setup.workout.WorkoutListFragment" />
         </activity>
         <activity android:name=".setup.workout.AddExerciseActivity">
         </activity>

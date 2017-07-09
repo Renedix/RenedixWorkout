@@ -5,62 +5,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-
 import com.workout.renedix.renedixworkout.R;
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
+public class CardioExerciseListActivity extends Fragment {
 
-
-public class CardioExerciseListActivity extends AppCompatActivity {
-
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
-
+    SimpleItemRecyclerViewAdapter recyclerViewAdapter;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cardioexercise_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+        View v =  inflater.inflate(R.layout.activity_cardioexercise_list, container, false);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
-
-        // Show the Up button in the action bar.
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        View recyclerView = findViewById(R.id.cardioexercise_list);
+        View recyclerView = v.findViewById(R.id.cardioexercise_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        if (findViewById(R.id.cardioexercise_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-        }
-
-        FloatingActionButton addButton = (FloatingActionButton) findViewById(R.id.add_button);
+        FloatingActionButton addButton = (FloatingActionButton) v.findViewById(R.id.add_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +41,15 @@ public class CardioExerciseListActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);
             }
         });
+
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        recyclerViewAdapter.refreshList();
     }
 
     @Override
@@ -84,23 +63,23 @@ public class CardioExerciseListActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpFromSameTask(this);
-            return true;
+            //navigateUpFromSameTask(this);
+            //return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Database.getInstance().getCardioExercises()));
+        recyclerViewAdapter = new SimpleItemRecyclerViewAdapter();
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<CardioExercise> mValues;
+        private List<CardioExercise> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<CardioExercise> items) {
-            mValues = items;
+        public SimpleItemRecyclerViewAdapter() {
+            mValues = new ArrayList<CardioExercise>();
         }
 
         @Override
@@ -130,6 +109,16 @@ public class CardioExerciseListActivity extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return mValues.size();
+        }
+
+        @Override
+        public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+            super.onAttachedToRecyclerView(recyclerView);
+        }
+
+        public void refreshList() {
+            mValues = Database.getInstance().getCardioExercises();
+            notifyDataSetChanged();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

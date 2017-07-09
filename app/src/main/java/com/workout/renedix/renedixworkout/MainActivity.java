@@ -42,9 +42,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         //region fragments
-        displayView(R.id.cardio_exercise_session_form);
+        displayView(R.id.nav_cardio);
         //endregion
     }
 
@@ -88,13 +87,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_cardio) {
-            startActivity(new Intent(this, CardioExerciseListActivity.class));
+            displayView(id);
         } else if (id == R.id.nav_resistance){
             startActivity(new Intent(this, ResistanceExerciseListActivity.class));
         } else if (id == R.id.nav_workout){
             startActivity(new Intent(this, WorkoutListActivity.class));
         } else if(id == R.id.nav_cardio_exercise){
-            displayView(item.getItemId());
+            displayView(id);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -109,9 +108,13 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         String title = "";
         switch(viewId){
-            case R.id.cardio_exercise_session_form:
+            case R.id.nav_cardio_exercise:
                 fragment = new CardioExerciseSessionForm();
                 title = "Cardio Exercise Session Form";
+            break;
+            case R.id.nav_cardio:
+                fragment = new CardioExerciseListActivity();
+                title = "Cardio Exercise";
             break;
         }
 

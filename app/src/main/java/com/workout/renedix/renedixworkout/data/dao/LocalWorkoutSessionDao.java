@@ -22,16 +22,7 @@ public class LocalWorkoutSessionDao implements Dao<WorkoutSession>{
     public LocalWorkoutSessionDao(){
         workoutsSessions = new ArrayList<WorkoutSession>();
 
-
-        //populate test data
-
-
-        Workout workout = new Workout();
-            workout.id = 1;
-
-        WorkoutSession workoutSession = new WorkoutSession(workout,new Date());
-            workoutSession.id = 1;
-
+        //region Test Data
         //region cardioExerciseSesh
         CardioExercise cardioExercise = new CardioExercise();
             cardioExercise.id = 1;
@@ -67,8 +58,17 @@ public class LocalWorkoutSessionDao implements Dao<WorkoutSession>{
             resistanceSesh.id = 1;
         //endregion
 
-        //workoutSession.cardioExercises.add(cardioSesh);
-        //workoutSession.resistanceExercises.add(resistanceSesh);
+        //region WorkoutSession
+        Workout workout = new Workout();
+        workout.id = 1;
+
+        WorkoutSession workoutSession = new WorkoutSession(workout,new Date());
+        workoutSession.id = 1;
+
+        workoutSession.cardioExercises.add(cardioSesh);
+        workoutSession.resistanceExercises.add(resistanceSesh);
+        //endregion
+        //endregion
     }
 
     @Override

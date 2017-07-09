@@ -20,6 +20,8 @@ public class WorkoutSession {
     public WorkoutSession(Workout workout, Date workoutDate){
         this.workoutDate = workoutDate;
         this.workout = workout;
+        this.cardioExercises = new ArrayList<CardioExerciseSession>();
+        this.resistanceExercises = new ArrayList<ResistanceExerciseSession>();
     }
 
     public WorkoutSession(WorkoutSession workoutSession){

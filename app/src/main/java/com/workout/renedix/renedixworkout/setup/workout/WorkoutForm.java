@@ -151,22 +151,22 @@ public class WorkoutForm extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                navigateToParent();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     private boolean isInsertMode(){
         return binding.getWorkout().id==0;
     }
 
     private void navigateToParent(){
         NavUtils.navigateUpFromSameTask(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -90,20 +90,19 @@ public class CardioExerciseForm extends AppCompatActivity {
 
     }
 
+    private void navigateToParent(){
+        NavUtils.navigateUpFromSameTask(this);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                navigateToParent();
+                this.finish();
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void navigateToParent(){
-        NavUtils.navigateUpFromSameTask(this);
     }
 
 }

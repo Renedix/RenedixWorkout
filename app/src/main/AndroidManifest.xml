@@ -20,15 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".setup.cardio.CardioExerciseListFragment"
-            android:label="@string/title_cardioexercise_list"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.MainActivity" />
-        </activity>
-        <activity
             android:name=".settings.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainActivity">
@@ -37,46 +28,16 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".setup.resistance.ResistanceExerciseListFragment"
-            android:label="@string/title_resistanceexercise_list"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.MainActivity" />
-        </activity>
-        <activity
-            android:name=".setup.workout.WorkoutListFragment"
-            android:label="@string/title_workout_list"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.workout.renedix.renedixworkout.MainActivity" />
-        </activity>
-        <activity
             android:name=".setup.cardio.CardioExerciseForm"
-            android:label="Cardio Exercise"
-            android:parentActivityName=".setup.cardio.CardioExerciseListFragment">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.cardio.CardioExerciseListFragment" />
+            android:label="Cardio Exercise">
         </activity>
         <activity
             android:name=".setup.resistance.ResistanceExerciseForm"
-            android:label="Resistance Exercise"
-            android:parentActivityName=".setup.resistance.ResistanceExerciseListFragment">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.resistance.ResistanceExerciseListFragment" />
+            android:label="Resistance Exercise">
         </activity>
         <activity
             android:name=".setup.workout.WorkoutForm"
-            android:label="Workout"
-            android:parentActivityName=".setup.workout.WorkoutListFragment">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.workout.WorkoutListFragment" />
+            android:label="Workout">
         </activity>
         <activity android:name=".setup.workout.AddExerciseActivity">
         </activity>

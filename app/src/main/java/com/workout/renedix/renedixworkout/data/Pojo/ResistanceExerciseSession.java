@@ -19,4 +19,20 @@ public class ResistanceExerciseSession {
     *   -> Resistance
     * */
 
+    public ResistanceExerciseSession(ResistanceExercise exercise, int repetitions, double resistance, Date logDate){
+        this.id = id;
+        this.exercise = exercise;
+        this.repetitions = repetitions;
+        this.resistance = resistance;
+        this.logDate = logDate;
+    }
+
+    public ResistanceExerciseSession(ResistanceExerciseSession resistanceExerciseSession){
+        this.id = resistanceExerciseSession.id;
+        this.exercise = resistanceExerciseSession.exercise;
+        this.repetitions = resistanceExerciseSession.repetitions;
+        this.resistance = resistanceExerciseSession.resistance;
+        this.logDate = resistanceExerciseSession.logDate;
+    }
+
 }

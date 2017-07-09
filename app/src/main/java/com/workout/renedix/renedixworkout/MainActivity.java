@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListActivity;
 import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListActivity;
 import com.workout.renedix.renedixworkout.settings.SettingsActivity;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // To init
+        Database.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

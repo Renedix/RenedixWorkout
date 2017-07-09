@@ -7,6 +7,7 @@ import com.workout.renedix.renedixworkout.data.dao.Dao;
 import com.workout.renedix.renedixworkout.data.dao.LocalCardioExerciseDao;
 import com.workout.renedix.renedixworkout.data.dao.LocalResistanceExerciseDao;
 import com.workout.renedix.renedixworkout.data.dao.LocalWorkoutDao;
+import com.workout.renedix.renedixworkout.data.dao.LocalWorkoutSessionDao;
 
 import java.util.List;
 
@@ -15,9 +16,12 @@ import java.util.List;
  */
 
 public class Database {
-    private static final Database ourInstance = new Database();
+    private static Database ourInstance;
 
     public static Database getInstance() {
+        if (ourInstance==null){
+            ourInstance = new Database();
+        }
         return ourInstance;
     }
 
@@ -26,6 +30,7 @@ public class Database {
         cardioExerciseDao = new LocalCardioExerciseDao();
         resistanceExerciseDao = new LocalResistanceExerciseDao();
         workoutDao = new LocalWorkoutDao();
+        workoutSessionDao = new LocalWorkoutSessionDao();
     }
     //endregion
 
@@ -88,9 +93,11 @@ public class Database {
     //endregion
 
     //region WorkoutSession
+    Dao workoutSessionDao;
     //TODO Add WorkoutSession DAO
     //TODO Add dummy data for WorkoutSession
     //TODO Display Workout History
+    //TODO Display Exercise History
     //TODO Allow users to create workout
     //endregion
 

@@ -1,5 +1,8 @@
 package com.workout.renedix.renedixworkout.data.dao;
 
+import com.workout.renedix.renedixworkout.data.Database;
+import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
+import com.workout.renedix.renedixworkout.data.Pojo.ResistanceExercise;
 import com.workout.renedix.renedixworkout.data.Pojo.Workout;
 
 import java.util.ArrayList;
@@ -26,8 +29,19 @@ public class LocalWorkoutDao implements Dao<Workout> {
     public LocalWorkoutDao(){
         workouts = new ArrayList<Workout>();
 
+        CardioExercise ex1 = new CardioExercise();
+            ex1.id = 1;
+
+        ResistanceExercise ex2 = new ResistanceExercise();
+            ex2.id = 1;
+
         for(int i =0;i<5;i++){
             Workout workout = new Workout("Workout name "+i,"Workout description "+i);
+            workout.id = i+1;
+
+            workout.cardioExercises.add(ex1);
+            workout.resistanceExercises.add(ex2);
+
             this.add(workout);
         }
     }

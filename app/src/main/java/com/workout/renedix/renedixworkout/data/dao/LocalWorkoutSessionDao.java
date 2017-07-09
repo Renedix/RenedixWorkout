@@ -63,10 +63,10 @@ public class LocalWorkoutSessionDao implements Dao<WorkoutSession>{
         workout.id = 1;
 
         WorkoutSession workoutSession = new WorkoutSession(workout,new Date());
-        workoutSession.id = 1;
 
         workoutSession.cardioExercises.add(cardioSesh);
         workoutSession.resistanceExercises.add(resistanceSesh);
+        workoutsSessions.add(workoutSession);
         //endregion
         //endregion
     }
@@ -78,12 +78,14 @@ public class LocalWorkoutSessionDao implements Dao<WorkoutSession>{
 
     @Override
     public int add(WorkoutSession element) {
+        element.id = getNextId();
+        workoutsSessions.add(element);
         return 0;
     }
 
     @Override
     public void remove(int id) {
-
+        workoutsSessions.remove(this.getLocalById(id));
     }
 
     @Override
@@ -103,6 +105,32 @@ public class LocalWorkoutSessionDao implements Dao<WorkoutSession>{
 
     @Override
     public void update(WorkoutSession element) {
+        WorkoutSession session = getLocalById(element.id);
 
+        session.workout = element.workout;
+        session.cardioExercises = element.cardioExercises;
+        session.resistanceExercises = element.resistanceExercises;
+        session.workoutDate = element.workoutDate;
+    }
+
+    private int getNextId(){
+        int id = 0;
+        for (WorkoutSession session: workoutsSessions) {
+            if (session.id>id){
+                id = session.id;
+            }
+        }
+        return id+1;
+    }
+
+    public WorkoutSession getLocalById(int id) {
+
+        for (WorkoutSession session: workoutsSessions) {
+            if (id==session.id){
+                return session;
+            }
+        }
+
+        return null;
     }
 }

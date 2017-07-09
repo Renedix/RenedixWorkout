@@ -67,6 +67,7 @@ public class ResistanceExerciseForm extends AppCompatActivity {
             public void onClick(View v) {
                 Database.getInstance().deleteCardioExercise(binding.getResistanceExercise());
                 navigateToParent();
+                //TODO Ensure to remove any references to this Exercise
             }
         });
         //endregion

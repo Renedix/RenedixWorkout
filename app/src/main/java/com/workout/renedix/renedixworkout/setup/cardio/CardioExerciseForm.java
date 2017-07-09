@@ -73,6 +73,7 @@ public class CardioExerciseForm extends AppCompatActivity {
             public void onClick(View v) {
                 Database.getInstance().deleteCardioExercise(binding.getExercise());
                 navigateToParent();
+                //TODO Ensure to remove any references to this Exercise
             }
         });
 

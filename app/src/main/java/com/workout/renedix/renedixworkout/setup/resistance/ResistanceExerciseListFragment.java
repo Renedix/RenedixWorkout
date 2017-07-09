@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,24 +26,16 @@ import java.util.List;
 
 import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
 
-public class ResistanceExerciseListActivity extends AppCompatActivity {
+public class ResistanceExerciseListFragment extends Fragment {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
+    SimpleItemRecyclerViewAdapter simpleItemRecyclerViewAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resistanceexercise_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        toolbar.setTitle(getTitle());
+        View v =  inflater.inflate(R.layout.activity_resistanceexercise_list, container, false);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_button);
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.add_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,53 +47,34 @@ public class ResistanceExerciseListActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);
             }
         });
-        // Show the Up button in the action bar.
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
 
-        View recyclerView = findViewById(R.id.resistanceexercise_list);
+        View recyclerView = v.findViewById(R.id.resistanceexercise_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
 
-        if (findViewById(R.id.resistanceexercise_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
-        }
+        return v;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
-            navigateUpFromSameTask(this);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onResume() {
+        super.onResume();
+
+        simpleItemRecyclerViewAdapter.refreshData();
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Database.getInstance().getResistanceExercises()));
+        simpleItemRecyclerViewAdapter =  new SimpleItemRecyclerViewAdapter();
+        recyclerView.setAdapter(simpleItemRecyclerViewAdapter);
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<ResistanceExercise> mValues;
+        private List<ResistanceExercise> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<ResistanceExercise> items) {
-            mValues = items;
+        public void refreshData(){
+            mValues = Database.getInstance().getResistanceExercises();
+            notifyDataSetChanged();
         }
 
         @Override

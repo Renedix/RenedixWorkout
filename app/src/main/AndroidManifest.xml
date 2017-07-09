@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".setup.cardio.CardioExerciseListActivity"
+            android:name=".setup.cardio.CardioExerciseListFragment"
             android:label="@string/title_cardioexercise_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,7 +37,7 @@
                 android:value="com.workout.renedix.renedixworkout.MainActivity" />
         </activity>
         <activity
-            android:name=".setup.resistance.ResistanceExerciseListActivity"
+            android:name=".setup.resistance.ResistanceExerciseListFragment"
             android:label="@string/title_resistanceexercise_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -57,18 +57,18 @@
         <activity
             android:name=".setup.cardio.CardioExerciseForm"
             android:label="Cardio Exercise"
-            android:parentActivityName=".setup.cardio.CardioExerciseListActivity">
+            android:parentActivityName=".setup.cardio.CardioExerciseListFragment">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.cardio.CardioExerciseListActivity" />
+                android:value=".setup.cardio.CardioExerciseListFragment" />
         </activity>
         <activity
             android:name=".setup.resistance.ResistanceExerciseForm"
             android:label="Resistance Exercise"
-            android:parentActivityName=".setup.resistance.ResistanceExerciseListActivity">
+            android:parentActivityName=".setup.resistance.ResistanceExerciseListFragment">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".setup.resistance.ResistanceExerciseListActivity" />
+                android:value=".setup.resistance.ResistanceExerciseListFragment" />
         </activity>
         <activity
             android:name=".setup.workout.WorkoutForm"

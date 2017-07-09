@@ -14,9 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ViewFlipper;
 
-import com.workout.renedix.renedixworkout.data.Database;
-import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListActivity;
-import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListActivity;
+import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListFragment;
+import com.workout.renedix.renedixworkout.setup.resistance.ResistanceExerciseListFragment;
 import com.workout.renedix.renedixworkout.settings.SettingsActivity;
 import com.workout.renedix.renedixworkout.setup.workout.WorkoutListActivity;
 
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_cardio) {
             displayView(id);
         } else if (id == R.id.nav_resistance){
-            startActivity(new Intent(this, ResistanceExerciseListActivity.class));
+            displayView(id);
         } else if (id == R.id.nav_workout){
             startActivity(new Intent(this, WorkoutListActivity.class));
         } else if(id == R.id.nav_cardio_exercise){
@@ -113,8 +112,12 @@ public class MainActivity extends AppCompatActivity
                 title = "Cardio Exercise Session Form";
             break;
             case R.id.nav_cardio:
-                fragment = new CardioExerciseListActivity();
+                fragment = new CardioExerciseListFragment();
                 title = "Cardio Exercise";
+            break;
+            case R.id.nav_resistance:
+                fragment = new ResistanceExerciseListFragment();
+                title = "Resistance Exercise";
             break;
         }
 

@@ -19,7 +19,7 @@ import com.workout.renedix.renedixworkout.data.Pojo.CardioExercise;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardioExerciseListActivity extends Fragment {
+public class CardioExerciseListFragment extends Fragment {
 
     SimpleItemRecyclerViewAdapter recyclerViewAdapter;
     @Override

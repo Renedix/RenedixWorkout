@@ -3,6 +3,8 @@ package com.workout.renedix.renedixworkout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -10,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ViewFlipper;
 
 import com.workout.renedix.renedixworkout.data.Database;
 import com.workout.renedix.renedixworkout.setup.cardio.CardioExerciseListActivity;
@@ -20,15 +23,15 @@ import com.workout.renedix.renedixworkout.setup.workout.WorkoutListActivity;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ViewFlipper vf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        // To init
-        Database.getInstance();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -38,6 +41,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        //region fragments
+        displayView(R.id.cardio_exercise_session_form);
+        //endregion
     }
 
     @Override
@@ -81,14 +89,41 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_cardio) {
             startActivity(new Intent(this, CardioExerciseListActivity.class));
-        }else if (id == R.id.nav_resistance){
+        } else if (id == R.id.nav_resistance){
             startActivity(new Intent(this, ResistanceExerciseListActivity.class));
-        }else if (id == R.id.nav_workout){
+        } else if (id == R.id.nav_workout){
             startActivity(new Intent(this, WorkoutListActivity.class));
+        } else if(id == R.id.nav_cardio_exercise){
+            displayView(item.getItemId());
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
+    }
+
+
+    public void displayView(int viewId){
+
+        Fragment fragment = null;
+        String title = "";
+        switch(viewId){
+            case R.id.cardio_exercise_session_form:
+                fragment = new CardioExerciseSessionForm();
+                title = "Cardio Exercise Session Form";
+            break;
+        }
+
+        if (fragment!=null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame,fragment);
+            ft.commit();
+        }
+
+        if (getSupportActionBar()!=null){
+            getSupportActionBar().setTitle(title);
+        }
+
     }
 }

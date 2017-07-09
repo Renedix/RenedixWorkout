@@ -156,7 +156,7 @@ public class WorkoutForm extends AppCompatActivity {
     }
 
     private void navigateToParent(){
-        NavUtils.navigateUpFromSameTask(this);
+        this.finish();
     }
 
     @Override
@@ -164,7 +164,7 @@ public class WorkoutForm extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
-                this.finish();
+                navigateToParent();
                 return true;
         }
         return super.onOptionsItemSelected(item);
